@@ -13,28 +13,31 @@
 #include<pthread.h>
 #include<unistd.h>
 #include<semaphore.h>
+int x=10;
 sem_t binarysem;
 void* task1(void* arg){
-        sem_wait(&binarysem);
-        printf("Task1 is using the resource\n");
-        sleep(2);
-        printf("Task1 done\n");
-        sem_post(&binarysem);
+        for(int i=0;i<5;i++){
+                sem_wait(&binarysem);
+                x++;
+                printf("Thread %ld incremented value to %d\n",(long)arg,x);
+                sem_post(&binarysem);
+        }
         return NULL;
 }
 void* task2(void* arg){
-        sem_wait(&binarysem);
-        printf("Task2 is using the resource\n");
-        sleep(2);
-        printf("Task2 done\n");
-        sem_post(&binarysem);
+        for(int i=0;i<5;i++){
+                sem_wait(&binarysem);
+                x--;
+                printf("Thread %ld decremented value to %d\n",(long)arg,x);
+                sem_post(&binarysem);
+        }
         return NULL;
 }
 int main(){
         pthread_t t1,t2;
         sem_init(&binarysem,0,1);
-        pthread_create(&t1,NULL,task1,NULL);
-        pthread_create(&t2,NULL,task2,NULL);
+        pthread_create(&t1,NULL,task1,(void*)1);
+        pthread_create(&t2,NULL,task2,(void*)2);
         pthread_join(t1,NULL);
         pthread_join(t2,NULL);
         sem_destroy(&binarysem);

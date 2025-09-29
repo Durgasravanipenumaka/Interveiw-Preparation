@@ -47,7 +47,7 @@ int main(){
 ### 2. Counting Semaphore :
 - Can have a value 0, 1, 2, … N.
 - 0 resource unavailable.
-- >0 Number of resources available.
+- 0 Number of resources available.
 - Used when there are multiple instances of a resource.
 - Example: A pool of 5 printers → semaphore initialized to 5.
 ### Program :

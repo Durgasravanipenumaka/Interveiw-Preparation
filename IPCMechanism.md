@@ -254,3 +254,87 @@ int main() {
 }
 ```
 
+## Mailbox :
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <unistd.h>
+#include <ctype.h>
+
+#define KEY 1234
+#define SRVMSGTIME 1
+
+struct msg {
+    long mtype;
+    pid_t pid;
+    char text[100];
+};
+
+void togglecase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        if (islower(str[i])) str[i] = toupper(str[i]);
+        else str[i] = tolower(str[i]);
+    }
+}
+
+int main() {
+    int msgid;
+    struct msg m;
+
+    // Create message queue
+    msgid = msgget(KEY, IPC_CREAT | 0644);
+    if (msgid == -1) {
+        perror("msgget");
+        exit(1);
+    }
+
+    pid_t pid = fork();
+
+    if (pid < 0) {
+        perror("fork");
+        exit(1);
+    } 
+    else if (pid == 0) {
+        // ----------- CLIENT PROCESS -----------
+        sleep(1); // give server time to start
+
+        m.mtype = SRVMSGTIME;
+        m.pid = getpid();
+
+        printf("Client: Enter text: ");
+        scanf("%s", m.text);
+
+        msgsnd(msgid, &m, sizeof(m) - sizeof(long), 0);
+
+        // wait for server response (mtype = pid)
+        msgrcv(msgid, &m, sizeof(m) - sizeof(long), getpid(), 0);
+
+        printf("Client: Response from server: %s\n", m.text);
+    } 
+    else {
+        // ----------- SERVER PROCESS -----------
+        while (1) {
+            msgrcv(msgid, &m, sizeof(m) - sizeof(long), SRVMSGTIME, 0);
+            printf("Server: Received from client %d: %s\n", m.pid, m.text);
+
+            togglecase(m.text);
+
+            m.mtype = m.pid;
+            msgsnd(msgid, &m, sizeof(m) - sizeof(long), 0);
+
+            break; // exit after one message for simplicity
+        }
+    }
+
+    // Cleanup (only parent removes queue)
+    if (pid > 0) {
+        msgctl(msgid, IPC_RMID, NULL);
+    }
+
+    return 0;
+}
+```
+

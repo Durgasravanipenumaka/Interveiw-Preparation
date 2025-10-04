@@ -197,3 +197,60 @@ int main() {
 }
 ```
 
+## Direct Task Notification Example using Threads :
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+
+char message[100];
+int notified = 0; // flag for notification
+
+void* server_task(void* arg) {
+    sleep(1); // simulate work
+    pthread_mutex_lock(&lock);
+
+    // Prepare message
+    snprintf(message, sizeof(message), "Hello from server task!");
+
+    // Directly notify client
+    notified = 1;
+    pthread_cond_signal(&cond);
+
+    pthread_mutex_unlock(&lock);
+    printf("Server: Notification sent to client.\n");
+
+    return NULL;
+}
+
+void* client_task(void* arg) {
+    pthread_mutex_lock(&lock);
+
+    // Wait for direct notification
+    while (!notified) {
+        pthread_cond_wait(&cond, &lock);
+    }
+
+    printf("Client: Received notification with message: %s\n", message);
+
+    pthread_mutex_unlock(&lock);
+    return NULL;
+}
+
+int main() {
+    pthread_t server, client;
+
+    pthread_create(&client, NULL, client_task, NULL);
+    pthread_create(&server, NULL, server_task, NULL);
+
+    pthread_join(server, NULL);
+    pthread_join(client, NULL);
+
+    return 0;
+}
+```
+

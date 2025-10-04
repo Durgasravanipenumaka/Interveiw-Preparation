@@ -24,3 +24,75 @@ int main(){
         }
 }
 ```
+
+## SEMAPORES :
+
+### client : 
+```c
+include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <unistd.h>
+#include "common.h"
+
+int main() {
+    int msgid;
+    struct msg m;
+
+    msgid = msgget(KEY, 0);
+
+    m.mtype = SRVMSGTIME;
+    m.pid = getpid();
+
+    printf("Enter the text: ");
+    scanf("%s", m.text);
+
+    msgsnd(msgid, &m, sizeof(m) - sizeof(long), 0);
+
+    // wait for response (mtype = pid)
+    msgrcv(msgid, &m, sizeof(m) - sizeof(long), getpid(), 0);
+
+    printf("Response: %s\n", m.text);
+}
+```
+### server :
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <unistd.h>
+#include "common.h"
+
+void togglecase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        if (islower(str[i]))
+            str[i] = toupper(str[i]);
+        else
+            str[i] = tolower(str[i]);
+    }
+}
+
+int main() {
+    int msgid;
+    struct msg m;
+
+    msgid = msgget(KEY, IPC_CREAT | 0640);
+
+    while (1) {
+        // receive client request
+        msgrcv(msgid, &m, sizeof(m) - sizeof(long), SRVMSGTIME, 0);
+
+        togglecase(m.text);
+
+        // send back to client, with mtype = client pid
+        m.mtype = m.pid;
+        msgsnd(msgid, &m, sizeof(m) - sizeof(long), 0);
+    }
+}
+```
+

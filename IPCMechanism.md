@@ -1,4 +1,6 @@
 ## 1.PIPE :
+- A pipe is a unidirectional communication channel that allows data flow from one process to another.
+- Continuous data stream between processes.
 ```c
 #include<stdio.h>
 #include<unistd.h>
@@ -26,6 +28,8 @@ int main(){
 ```
 
 ## 2.Message Queues :
+- A kernel-managed queue that allows processes to send/receive discrete messages.
+- Discrete messages between processes.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -127,6 +131,8 @@ int main() {
 ```
 
 ## 3.Direct Task Notification Example using Threads :
+- A lightweight signaling mechanism used in RTOS (like FreeRTOS) to notify a task directly.
+- Fast signal from one task to another.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -184,6 +190,8 @@ int main() {
 ```
 
 ## 4.Mailbox :
+- A message-holding mechanism that acts as a container for sending/receiving data between tasks.
+- A “mail container” holding messages for tasks to read.
 ```c
 #include <stdio.h>
 #include <stdlib.h>

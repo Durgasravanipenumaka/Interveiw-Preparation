@@ -35,4 +35,6 @@
 | 4️⃣       | **Kernel Initialization**  | Kernel sets up hardware, mounts root filesystem |
 | 5️⃣       | **init / systemd process** | Starts system services (background processes)   |
 | 6️⃣       | **Login / Shell**          | User gets login screen or GUI                   |
-![Uploading image.png…]()
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/f1ed4f39-50ca-48e0-a979-3d192f7811ad" />
+

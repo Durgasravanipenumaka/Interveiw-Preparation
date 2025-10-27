@@ -27,14 +27,6 @@
 ## What is the Linux Booting Process?
 - The booting process is the sequence of steps that the Linux system performs from the moment you power it on until the login prompt or desktop appears.
 - It basically takes your system from hardware → kernel → user space.
-| **Stage** | **Name**                   | **What Happens**                                |
-| --------- | -------------------------- | ----------------------------------------------- |
-| 1️⃣       | **BIOS / UEFI**            | Hardware initialization                         |
-| 2️⃣       | **MBR / GPT**              | Bootloader information is read                  |
-| 3️⃣       | **Bootloader (GRUB)**      | Loads Linux kernel into memory                  |
-| 4️⃣       | **Kernel Initialization**  | Kernel sets up hardware, mounts root filesystem |
-| 5️⃣       | **init / systemd process** | Starts system services (background processes)   |
-| 6️⃣       | **Login / Shell**          | User gets login screen or GUI                   |
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/f1ed4f39-50ca-48e0-a979-3d192f7811ad" />
 

@@ -1,4 +1,4 @@
-## Yocto :
+# Yocto :
 - Yocto is not an operating system. It is a build system or framework used to create custom Linux distributions for embedded systems (like boards, IoT devices, routers, automotive systems, etc.).
 - Yocto helps you build your own version of Linux — specifically designed for your embedded hardware.
 
@@ -21,6 +21,7 @@
   Where to get the source code
   How to compile and install it
   What dependencies exist
+
 
 ## Build a small Linux OS image :
 ### STEP 1: Install Required Packages :
@@ -76,6 +77,7 @@ runqemu qemux86-64
 ```
 This will open a terminal window with your new Linux OS running — built completely by Yocto!
 
+
 ## What You Just Did ?
 | Step | What You Did           | Result                |
 | ---- | ---------------------- | --------------------- |
@@ -86,6 +88,7 @@ This will open a terminal window with your new Linux OS running — built comple
 | 5    | Ran BitBake            | Built Linux OS        |
 | 6    | Viewed output          | Kernel + RootFS ready |
 | 7    | Booted in QEMU         | Tested image          |
+
 
 ## Some important definitions :
 | Concept           | Meaning                                   |

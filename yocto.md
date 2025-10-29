@@ -3,9 +3,11 @@
 - Yocto helps you build your own version of Linux — specifically designed for your embedded hardware.
 
 ## What Yocto Actually Does
-- Yocto automates building all parts of an embedded Linux system:
+
+> Yocto automates building all parts of an embedded Linux system.
+
 | Component                    | Yocto Role                                       |
-| ---------------------------- | ------------------------------------------------ |
+| ----------------------------- | ------------------------------------------------ |
 | **Bootloader**               | Builds U-Boot or other loaders                   |
 | **Linux Kernel**             | Builds custom kernel with selected configuration |
 | **Root Filesystem**          | Builds minimal or full Linux file system         |
@@ -85,4 +87,13 @@ This will open a terminal window with your new Linux OS running — built comple
 | 6    | Viewed output          | Kernel + RootFS ready |
 | 7    | Booted in QEMU         | Tested image          |
 
+## Some important definitions :
+| Concept           | Meaning                                   |
+| ----------------- | ----------------------------------------- |
+| **Yocto Project** | A build framework for embedded Linux      |
+| **Poky**          | Yocto’s reference system                  |
+| **BitBake**       | The build engine (like `make`)            |
+| **Layer**         | Group of recipes and configs              |
+| **Recipe (.bb)**  | Instructions to build a package           |
+| **Image**         | The final OS output (kernel + filesystem) |
 

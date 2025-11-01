@@ -100,3 +100,5 @@ This will open a terminal window with your new Linux OS running — built comple
 | **Recipe (.bb)**  | Instructions to build a package           |
 | **Image**         | The final OS output (kernel + filesystem) |
 
+
+## 

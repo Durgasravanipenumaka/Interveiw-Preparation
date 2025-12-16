@@ -101,4 +101,3 @@ This will open a terminal window with your new Linux OS running — built comple
 | **Image**         | The final OS output (kernel + filesystem) |
 
 
-## 

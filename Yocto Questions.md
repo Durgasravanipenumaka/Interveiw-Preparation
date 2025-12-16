@@ -75,3 +75,5 @@ Rootfs is the first filesystem mounted by the Linux kernel at boot time. It incl
 
 ## What does bitbake <image> do?
 bitbake <image> builds a complete Linux image by compiling all required recipes and generating the kernel, root filesystem, and bootable images.
+
+When bitbake <image> is executed, BitBake parses metadata, resolves dependencies, builds all required packages, creates the root filesystem, and generates the final image for the target hardware.

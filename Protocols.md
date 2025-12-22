@@ -220,4 +220,17 @@ Slave holds SCL LOW to delay communication until ready.
 
 Master assumes device not present or error occurred.
 
+## Can slave initiate communication?
+
+❌ No. Only master can start communication.
+
+## Why is I²C slower than SPI?
+
+Because:
+
+Addressing overhead
+
+ACK/NACK bits
+
+Only 2 wires
 

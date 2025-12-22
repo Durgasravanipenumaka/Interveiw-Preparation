@@ -118,4 +118,31 @@ We connect TX of one device to RX of another because one device sends data and t
 ## What happens if parity settings differ between devices?
 If the parity settings differ between devices, the receiver may detect incorrect parity, leading to data corruption or parity errors.
 
-##
+
+
+
+
+
+# I2C 
+
+## What is I²C? Why is it called a two-wire protocol?
+I²C (Inter-Integrated Circuit) is a serial communication protocol used for communication between multiple devices on the same board.
+
+It supports multiple masters and multiple slaves.
+
+It is called a two-wire protocol because it uses two lines:
+
+SDA (Serial Data Line) → used to transfer data
+
+SCL (Serial Clock Line) → used to provide clock
+
+The master device generates the clock and controls the communication, while the slave devices respond using their unique addresses.
+
+I²C is a two-wire, synchronous serial communication protocol that allows multiple master and slave devices to communicate using SDA and SCL lines with address-based communication.
+
+## Who generates the clock signal in I²C, and why is it needed?
+The master device generates the clock signal on the SCL line.
+
+The clock is required to synchronize data transfer between the master and slave, so both devices know when to sample and change data on the SDA line.
+
+## 

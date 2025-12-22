@@ -145,4 +145,79 @@ The master device generates the clock signal on the SCL line.
 
 The clock is required to synchronize data transfer between the master and slave, so both devices know when to sample and change data on the SDA line.
 
-## 
+## What is the purpose of pull-up resistors in I²C lines (SDA and SCL)?
+In I²C, the SDA and SCL lines are open-drain (open-collector).
+
+- What does open-drain mean?
+
+  Devices cannot drive the line HIGH
+
+  Devices can only:
+
+       - Pull the line LOW
+
+       - Or release the line
+
+So, without pull-up resistors, the line would float and logic HIGH would never be achieved.
+
+Pull-up resistors are required in I²C because SDA and SCL are open-drain lines; they pull the lines to logic HIGH when no device is driving them LOW, ensuring reliable communication.
+
+## Is I²C synchronous or asynchronous?
+Synchronous, because communication uses a clock signal (SCL).
+
+## What is master and slave?
+
+Master → Initiates communication, generates clock
+
+Slave → Responds to master using its address
+
+## Can there be multiple masters?
+
+Yes, I²C supports multi-master, but it is rarely used in practice.
+
+## What is I²C addressing?
+
+Each slave has a unique address so the master can identify it.
+
+## 7-bit vs 10-bit addressing?
+
+7-bit → 128 devices (commonly used)
+
+10-bit → More addresses (rare)
+
+## What is ACK and NACK?
+
+ACK → Receiver pulls SDA LOW to confirm data received
+
+NACK → Receiver does not acknowledge
+
+## What is START condition?
+
+SDA goes LOW while SCL is HIGH, indicating start of communication.
+
+## What is STOP condition?
+
+SDA goes HIGH while SCL is HIGH, ending communication.
+
+## What happens if two masters start together?
+
+Arbitration occurs; the master sending LOW wins, the other stops.
+
+## What is clock stretching?
+
+Slave holds SCL LOW to delay communication until ready.
+
+## What are I²C speed modes?
+| Mode       | Speed    |
+| ---------- | -------- |
+| Standard   | 100 kbps |
+| Fast       | 400 kbps |
+| Fast+      | 1 Mbps   |
+| High-Speed | 3.4 Mbps |
+
+
+## What if slave does not send ACK?
+
+Master assumes device not present or error occurred.
+
+

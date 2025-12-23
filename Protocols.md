@@ -125,6 +125,8 @@ If the parity settings differ between devices, the receiver may detect incorrect
 
 # I2C 
 
+I²C is a two-wire synchronous serial communication protocol that allows multiple slave devices to communicate with a master using SDA and SCL lines with address-based communication.
+
 ## What is I²C? Why is it called a two-wire protocol?
 I²C (Inter-Integrated Circuit) is a serial communication protocol used for communication between multiple devices on the same board.
 
@@ -234,3 +236,173 @@ ACK/NACK bits
 
 Only 2 wires
 
+## 7-bit vs 10-bit addressing?
+
+7-bit → 128 devices (commonly used)
+
+10-bit → More addresses (rare)
+
+## What is ACK and NACK?
+
+ACK → Receiver pulls SDA LOW to confirm data received
+
+NACK → Receiver does not acknowledge
+
+## What happens if two masters start together?
+
+Arbitration occurs; the master sending LOW wins, the other stops.
+
+## What is clock stretching?
+
+Slave holds SCL LOW to delay communication until ready.
+
+## What are I²C speed modes?
+
+| Mode       | Speed    |
+| ---------- | -------- |
+| Standard   | 100 kbps |
+| Fast       | 400 kbps |
+| Fast+      | 1 Mbps   |
+| High-Speed | 3.4 Mbps |
+
+## What if slave does not send ACK?
+
+Master assumes device not present or error occurred.
+
+## Can slave initiate communication?
+
+❌ No. Only master can start communication.
+
+## Why is I²C slower than SPI?
+
+Because:
+
+Addressing overhead
+
+ACK/NACK bits
+
+Only 2 wires
+
+## What is repeated START?
+
+START condition without STOP, used when switching between read/write.
+
+## What is bus arbitration?
+
+Process that decides which master controls the bus in multi-master I²C.
+
+## What is open-drain and why used?
+
+Open-drain allows devices to only pull LOW, preventing bus conflict.
+
+## What if SDA is stuck LOW?
+
+Bus becomes busy, communication fails.
+
+## How to detect I²C errors?
+
+Missing ACK
+
+Bus busy
+
+Timeout
+
+SDA/SCL stuck
+
+## ACK vs NACK in read operation?
+
+ACK → More data needed
+
+NACK → Last byte received
+
+## How does arbitration work?
+
+Master monitoring SDA:
+
+     - LOW wins
+
+     - HIGH loses and stops transmitting
+
+## What are reserved addresses?
+
+Addresses used for:
+
+     - General call
+
+     - Future use
+
+     - Special commands
+
+## Why SDA changes only when SCL is LOW?
+
+To avoid false START/STOP detection.
+
+## What is R/W bit?
+
+Indicates:
+
+   - 0 → Write
+
+   - 1 → Read
+
+## How to choose pull-up resistor?
+
+Depends on:
+
+       - Bus speed
+
+       - Capacitance
+
+       - Devices count
+        (Common value: 4.7 kΩ)
+
+## I²C vs SPI?
+| Feature    | I²C    | SPI  |
+| ---------- | ------ | ---- |
+| Wires      | 2      | 4    |
+| Speed      | Medium | High |
+| Addressing | Yes    | No   |
+| Complexity | Medium | Low  |
+
+## Two slaves same address?
+
+Use:
+
+- Address pins
+
+- I²C multiplexer
+
+
+## How many devices on one bus?
+
+Theoretically 127, practically limited by capacitance.
+
+## Real-time use?
+
+Sensors, RTCs, EEPROMs, displays.
+
+## How ESP32 implements I²C?
+
+Using hardware I²C controller with configurable SDA/SCL pins.
+
+## ACK missing mid-transfer?
+
+Master stops communication.
+
+## Why repeated START?
+
+To avoid releasing the bus.
+
+## Long-distance communication?
+
+❌ No, due to capacitance and noise.
+
+## Common problems?
+
+- Missing pull-ups
+
+- Wrong address
+
+- Clock speed mismatch
+
+- Noise

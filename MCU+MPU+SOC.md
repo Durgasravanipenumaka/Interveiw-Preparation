@@ -48,7 +48,6 @@ Context switching is saving and restoring CPU state when switching between proce
 
 
 # 2️⃣ SOC – Interview Answers
-## Basic
 
 ## 1. What is an SoC?
 SoC integrates CPU, GPU, DSP, modem, memory controllers, and peripherals on a single chip.
@@ -82,7 +81,6 @@ Power domain allows selective power control of SoC blocks.
 
 
 # 3️⃣ MICROCONTROLLER – Interview Answers
-## Basic
 
 ## 1. Microcontroller?
 A microcontroller is a single-chip embedded system with CPU, memory, and peripherals.
@@ -99,242 +97,165 @@ GPIO allows digital input and output control.
 ## 5. Watchdog timer?
 Resets the system if software fails to respond.
 
-6. Interrupt?
+## 6. Interrupt?
 Interrupt is a signal that temporarily halts execution to service an event.
 
-7. PWM?
+## 7. PWM?
 PWM controls output power by varying duty cycle.
 
-8. Timer/counter?
+## 8. Timer/counter?
 Measures time intervals or counts events.
 
-9. Polling vs interrupt?
+## 9. Polling vs interrupt?
 Polling checks status repeatedly; interrupt responds automatically.
 
-10. Low-power mode?
+## 10. Low-power mode?
 Reduces power by disabling unused modules.
 
-Advanced
-
-11. RTOS?
+## 11. RTOS?
 RTOS manages tasks with deterministic timing.
 
-12. Stack overflow?
+## 12. Stack overflow?
 Occurs when stack memory exceeds its limit.
 
-13. HardFault?
+## 13. HardFault?
 A critical ARM exception due to invalid memory access.
 
-14. Bootloader?
+## 14. Bootloader?
 Initial code that loads the application program.
 
-15. DMA?
+## 15. DMA?
 DMA transfers data without CPU intervention.
 
-4️⃣ MODEM – Interview Answers
-Basic
+# 4️⃣ MODEM – Interview Answers
 
-1. Modem?
+## 1. Modem?
 Modem performs modulation and demodulation.
 
-2. Why modem needed?
+## 2. Why modem needed?
 To transmit digital data over communication channels.
 
-3. Baseband vs RF?
+## 3. Baseband vs RF?
 Baseband processes digital signals; RF handles wireless transmission.
 
-4. Modulation?
+## 4. Modulation?
 Process of mapping data onto carrier signals.
 
-5. Digital modulation examples?
+## 5. Digital modulation examples?
 BPSK, QPSK, QAM.
 
-Intermediate
-
-6. QPSK vs QAM?
+## 6. QPSK vs QAM?
 QPSK varies phase only; QAM varies amplitude and phase.
 
-7. Uplink/downlink?
+## 7. Uplink/downlink?
 Uplink is device to network; downlink is network to device.
 
-8. Bandwidth?
+## 8. Bandwidth?
 Range of frequencies used for communication.
 
-9. BER?
+## 9. BER?
 Bit Error Rate measures data transmission accuracy.
 
-10. Latency?
+## 10. Latency?
 Delay between transmission and reception.
 
-Advanced
-
-11. OFDM?
-Uses multiple orthogonal subcarriers for high data rates.
-
-12. MIMO?
-Uses multiple antennas to improve throughput.
-
-13. Carrier aggregation?
-Combines multiple frequency bands.
-
-14. LTE vs 5G modem?
-5G supports higher speed and lower latency.
-
-15. Baseband processor?
-Processes modulation, coding, and signal algorithms.
-
-5️⃣ PMIC – Interview Answers
+# 5️⃣ PMIC – Interview Answers
 Basic
 
-1. PMIC?
+## 1. PMIC?
 Manages power supply and regulation.
 
-2. Why PMIC required?
+## 2. Why PMIC required?
 Different blocks need different voltages.
 
-3. PMIC functions?
+## 3. PMIC functions?
 Voltage regulation, charging, sequencing, protection.
 
-4. Voltage regulator?
+## 4. Voltage regulator?
 Maintains constant output voltage.
 
-5. LDO vs SMPS?
+## 5. LDO vs SMPS?
 LDO is simple but inefficient; SMPS is efficient but complex.
 
-Intermediate
-
-6. Buck converter?
+## 6. Buck converter?
 Steps down voltage.
 
-7. Boost converter?
+## 7. Boost converter?
 Steps up voltage.
 
-8. Power sequencing?
+## 8. Power sequencing?
 Controls power-up order of blocks.
 
-9. Battery charging IC?
+## 9. Battery charging IC?
 Manages safe battery charging.
 
-10. Thermal protection?
+## 10. Thermal protection?
 Prevents overheating.
 
-Advanced
-
-11. Dynamic voltage scaling?
-Adjusts voltage based on load.
-
-12. Power efficiency?
-Ratio of output power to input power.
-
-13. Quiescent current?
-Current consumed in idle state.
-
-14. PMIC communication?
-Uses I2C or SPI.
-
-15. Power-on reset?
-Resets system during startup.
 
 6️⃣ PA – Interview Answers
 Basic
 
-1. Power amplifier?
+## 1. Power amplifier?
 Increases signal power.
 
-2. Why PA used?
+## 2. Why PA used?
 To drive antenna for long-distance transmission.
 
-3. Gain?
+## 3. Gain?
 Ratio of output to input power.
 
-4. Output power?
+## 4. Output power?
 Power delivered to the load.
 
-5. PA position?
+## 5. PA position?
 Placed before antenna in transmitter chain.
 
-Intermediate
-
-6. PA classes?
+## 6. PA classes?
 Class A, B, AB, C.
 
-7. Class differences?
+## 7. Class differences?
 Trade-off between efficiency and linearity.
 
-8. Efficiency?
+## 8. Efficiency?
 How well input power converts to output power.
 
-9. Linearity?
+## 9. Linearity?
 Ability to amplify without distortion.
 
-10. Saturation?
+## 10. Saturation?
 Maximum output limit.
 
-Advanced
+# 7️⃣ RF – Interview Answers
 
-11. PAE?
-Power Added Efficiency measures PA efficiency.
-
-12. Harmonic distortion?
-Unwanted frequency components.
-
-13. ACLR?
-Measures interference to adjacent channels.
-
-14. Doherty amplifier?
-Improves efficiency at high power.
-
-15. Thermal runaway?
-Overheating causes increasing current.
-
-7️⃣ RF – Interview Answers
-Basic
-
-1. RF?
+## 1. RF?
 Radio Frequency used for wireless communication.
 
-2. RF range?
+## 2. RF range?
 3 kHz to 300 GHz.
 
-3. Wavelength?
+## 3. Wavelength?
 Distance between signal peaks.
 
-4. Antenna?
+## 4. Antenna?
 Converts electrical signals to electromagnetic waves.
 
-5. RF vs baseband?
+## 5. RF vs baseband?
 RF handles transmission; baseband handles processing.
 
-Intermediate
-
-6. Impedance matching?
+## 6. Impedance matching?
 Maximizes power transfer.
 
-7. VSWR?
+## 7. VSWR?
 Measures impedance mismatch.
 
-8. Noise figure?
+## 8. Noise figure?
 Measure of noise added by a system.
 
-9. LNA?
+## 9. LNA?
 Amplifies weak RF signals.
 
-10. Mixer?
+## 10. Mixer?
 Shifts signal frequency.
 
-Advanced
 
-11. RF front end?
-Includes LNA, PA, mixer, filters.
-
-12. S-parameters?
-Describe RF network behavior.
-
-13. Isolation?
-Prevents signal leakage.
-
-14. Phase noise?
-Frequency instability in oscillators.
-
-15. EMI/EMC?
-Electromagnetic interference and compatibility.

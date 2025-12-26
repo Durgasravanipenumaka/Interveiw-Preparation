@@ -406,3 +406,210 @@ To avoid releasing the bus.
 - Clock speed mismatch
 
 - Noise
+
+
+# SPI
+
+
+## What is SPI?
+SPI (Serial Peripheral Interface) is a synchronous, serial communication protocol used for high-speed data transfer between a master and one or more slave devices.
+
+Commonly used in microcontrollers, SoCs, sensors, ADCs, DACs, displays, flash memory, SD cards, etc.
+
+## Why SPI is called Synchronous?
+
+Because data transfer happens using a clock signal.
+
+  - The master generates the clock
+
+  - Both master and slave use this clock to send and receive data at the same time
+
+
+## SPI Architecture (Who controls whom?)
+🔹 Master–Slave Architecture
+
+- Master
+
+  - Generates clock
+
+  - Selects slave
+
+  - Starts and stops communication
+
+- Slave
+
+  - Responds to master
+
+  - Sends/receives data only when selected
+ 
+  There is always at least one master
+
+  ## SPI Signals / Pins
+
+  | Signal         | Full Form                  | Direction      | Meaning             |
+| -------------- | -------------------------- | -------------- | ------------------- |
+| **MOSI**       | Master Out Slave In        | Master → Slave | Data sent by master |
+| **MISO**       | Master In Slave Out        | Slave → Master | Data sent by slave  |
+| **SCLK / SCK** | Serial Clock               | Master → Slave | Clock signal        |
+| **SS / CS**    | Slave Select / Chip Select | Master → Slave | Selects the slave   |
+
+## Basic SPI Communication Flow
+
+1️⃣ Master pulls CS LOW (selects slave)
+
+2️⃣ Master generates clock pulses (SCLK)
+
+3️⃣ Data shifts:
+
+    - Master sends bits on MOSI
+
+    - Slave sends bits on MISO
+
+4️⃣ After data transfer → CS goes HIGH
+
+5️⃣ Communication ends
+
+- 🟢 Data transfer is FULL-DUPLEX
+
+Send + Receive happens simultaneously
+
+
+##  6️⃣ SPI Data Transfer (Shift Registers Concept)
+
+SPI uses shift registers internally.
+
+Example (8-bit transfer):
+
+  - On every clock pulse:
+
+     - 1 bit is shifted out from master
+
+     - 1 bit is shifted in from slave
+
+So after 8 clock pulses:
+
+     - 8 bits transmitted
+
+     - 8 bits received
+
+This is why SPI is faster than I²C and UART
+
+## 7️⃣ Clock Polarity (CPOL) & Clock Phase (CPHA)
+
+🔹 CPOL – Clock Polarity
+
+Defines idle state of clock
+
+    - CPOL = 0 → Clock idle LOW
+
+    - CPOL = 1 → Clock idle HIGH
+
+🔹 CPHA – Clock Phase
+
+Defines when data is sampled
+
+    - CPHA = 0 → Data sampled on first clock edge
+
+    - CPHA = 1 → Data sampled on second clock edge
+
+SPI Modes (0 to 3)
+
+| Mode   | CPOL | CPHA |
+| ------ | ---- | ---- |
+| Mode 0 | 0    | 0    |
+| Mode 1 | 0    | 1    |
+| Mode 2 | 1    | 0    |
+| Mode 3 | 1    | 1    |
+
+Master and Slave must use the SAME mode, otherwise data corruption occurs.
+
+## 8️⃣ SPI Timing Example
+
+Mode 0 example:
+
+   - Clock idle LOW
+
+   - Data is sampled on rising edge
+
+   - Data changes on falling edge
+
+This ensures stable data during sampling
+
+## 9️⃣ SPI with Multiple Slaves
+
+There are two approaches:
+
+🔹 1) Separate CS lines (Most common)
+
+   - MOSI, MISO, SCLK shared
+
+   - Each slave has separate CS
+
+✅ Simple
+
+❌ More GPIOs needed
+
+🔹 2) Daisy Chain
+
+   - Slaves connected in series
+   
+   - Data passes through each slave
+
+✅ Fewer CS lines
+
+❌ Complex, slower
+🔟 SPI Speed
+
+- SPI is very fast
+
+- Speed depends on:
+
+   - MCU clock
+   
+   - Peripheral capability
+ 
+Typical speeds:
+
+   - 1 MHz to 50+ MHz
+
+📌 Faster than:
+
+    - UART ❌
+
+    - I²C ❌
+
+## 1️⃣1️⃣ Advantages of SPI
+✅ High speed
+
+✅ Full-duplex communication
+
+✅ Simple hardware
+
+✅ No addressing overhead
+
+✅ Flexible data size
+
+## 1️⃣2️⃣ Disadvantages of SPI
+
+❌ More pins required
+
+❌ No built-in acknowledgment
+
+❌ No error detection
+
+❌ Short-distance communication
+
+❌ Not standardized like I²C
+
+
+## 1️⃣3️⃣ SPI vs I²C vs UART (Quick Comparison)
+
+| Feature    | SPI       | I²C    | UART |
+| ---------- | --------- | ------ | ---- |
+| Clock      | Yes       | Yes    | No   |
+| Speed      | Very High | Medium | Low  |
+| Duplex     | Full      | Half   | Full |
+| Pins       | 4+        | 2      | 2    |
+| Addressing | No        | Yes    | No   |
+
+

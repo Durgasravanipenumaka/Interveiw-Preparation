@@ -411,13 +411,13 @@ To avoid releasing the bus.
 # SPI
 
 
-## What is SPI?
+## 1️⃣ What is SPI?
 SPI (Serial Peripheral Interface) is a synchronous, serial communication protocol used for high-speed data transfer between a master and one or more slave devices.
 
 Commonly used in microcontrollers, SoCs, sensors, ADCs, DACs, displays, flash memory, SD cards, etc.
 
-## Why SPI is called Synchronous?
-
+## 2️⃣ Why SPI is called Synchronous?
+ 
 Because data transfer happens using a clock signal.
 
   - The master generates the clock
@@ -425,7 +425,7 @@ Because data transfer happens using a clock signal.
   - Both master and slave use this clock to send and receive data at the same time
 
 
-## SPI Architecture (Who controls whom?)
+## 3️⃣ SPI Architecture (Who controls whom?)
 🔹 Master–Slave Architecture
 
 - Master
@@ -444,7 +444,7 @@ Because data transfer happens using a clock signal.
  
   There is always at least one master
 
-  ## SPI Signals / Pins
+  ## 4️⃣ SPI Signals / Pins
 
   | Signal         | Full Form                  | Direction      | Meaning             |
 | -------------- | -------------------------- | -------------- | ------------------- |
@@ -453,7 +453,7 @@ Because data transfer happens using a clock signal.
 | **SCLK / SCK** | Serial Clock               | Master → Slave | Clock signal        |
 | **SS / CS**    | Slave Select / Chip Select | Master → Slave | Selects the slave   |
 
-## Basic SPI Communication Flow
+## 5️⃣ Basic SPI Communication Flow
 
 1️⃣ Master pulls CS LOW (selects slave)
 
